@@ -29,12 +29,12 @@
 (load-theme 'solarized-light t)
 
 ;; increase font size for better readability
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 100)
 
 ;; Uncomment the lines below by removing semicolons and play with the
 ;; values in order to set the width (in characters wide) and height
 ;; (in lines high) Emacs will have whenever you start it
-;; (setq initial-frame-alist '((top . 0) (left . 0) (width . 177) (height . 53)))
+(setq initial-frame-alist '((top . 0) (left . 0) 177 (height . 53)))
 
 ;; These settings relate to how emacs interacts with your operating system
 (setq ;; makes killing/yanking interact with the clipboard
@@ -67,3 +67,18 @@
 
 ;; no bell
 (setq ring-bell-function 'ignore)
+
+(defun jbr-init ()
+  "Called from term-setup-hook after the default
+terminal setup is
+done or directly from startup if term-setup-hook not
+used.  The value
+0xF030 is the command for maximizing a window."
+  (interactive)
+  (w32-send-sys-command #xf030)
+  (ecb-redraw-layout)
+  (calendar)
+)
+(setq term-setup-hook 'jbr-init)
+(setq window-setup-hook 'jbr-init)
+
