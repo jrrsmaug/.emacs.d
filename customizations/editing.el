@@ -70,3 +70,9 @@
     (quit nil)))
 
 (setq electric-indent-mode nil)
+
+(require 'auto-complete-config)
+
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+

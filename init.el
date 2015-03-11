@@ -2,6 +2,8 @@
 ;; Packages
 ;;;;
 
+(setq exec-path (append exec-path '("C:\\Program Files (x86)\\Git\\bin")))
+
 ;; Define package repositories
 (require 'package)
 
@@ -68,6 +70,9 @@
     ;; git integration
     magit
 
+    hydra
+
+    auto-complete
     ))
 
 ;; On OS X, an Emacs instance started from the graphical user
