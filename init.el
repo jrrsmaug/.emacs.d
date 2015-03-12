@@ -153,5 +153,10 @@
  ;; If there is more than one, they won't work right.
  )
 
+(require 'server)
+(defun server-ensure-safe-dir (dir) "Noop" t)
+(unless (server-running-p)
+  (server-start))
+
 (desktop-save-mode 1)
 
