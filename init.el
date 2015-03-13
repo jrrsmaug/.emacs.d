@@ -1,162 +1,81 @@
-;;;;
-;; Packages
-;;;;
-
 (setq exec-path (append exec-path '("C:\\Program Files (x86)\\Git\\bin")))
 
-;; Define package repositories
-(require 'package)
+;; Turn off mouse interface early in startup to avoid momentary display
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-             '("tromey" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+;; No splash screen please ... jeez
+(setq inhibit-startup-message t)
 
-;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
-;;                          ("melpa" . "http://melpa-stable.milkbox.net/packages/")))
+(setq settings-dir
+      (expand-file-name "settings" user-emacs-directory))
 
-;; Load and activate emacs packages. Do this first so that the
-;; packages are loaded before you start trying to modify them.
-;; This also sets the load path.
-(package-initialize)
+;; Set up load path
+(add-to-list 'load-path settings-dir)
 
-;; Download the ELPA archive description if needed.
-;; This informs Emacs about the latest versions of all packages, and
-;; makes them available for download.
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(require 'setup-el-get)
 
-;; The packages you want installed. You can also install these
-;; manually with M-x package-install
-;; Add in your own as you wish:
-(defvar my-packages
-  '(;; makes handling lisp expressions much, much easier
-    ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
-    paredit
+(setq my:el-get-packages
+      '(clojure-mode
+        solarized-emacs
+        rainbow-delimiters
+        cider
+        midje-mode
+        helm
+        markdown-mode
+        multiple-cursors
+        expand-region
+        popup
+        dsvn
+        magit
+        js2-mode
+        yasnippet
+        smartparens
+        exec-path-from-shell
+        projectile
+        undo-tree
+        moz-repl
+        ace-jump-mode
+        dired+
+        bookmark+
+        iy-go-to-char
+        key-chord
+        keep-buffers
+        ace-window
+        hydra-head
+        framemove
+        company
+	))
 
-    ;; key bindings and code colorization for Clojure
-    ;; https://github.com/clojure-emacs/clojure-mode
-    clojure-mode
+(el-get 'sync my:el-get-packages)
 
-    ;; extra syntax highlighting for clojure
-    clojure-mode-extra-font-locking
+(cond
+ ((eq window-system 'ns)
+  (require 'setup-mac))
+ ((eq window-system 'w32)
+  (require 'setup-win32))
+ ((eq window-system 'x)
+  (require 'setup-x11)))
 
-    ;; integration with a Clojure REPL
-    ;; https://github.com/clojure-emacs/cider
-    cider
+;; Functions (load all files in defuns-dir)
+(setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
+(dolist (file (directory-files defuns-dir t "\\w+"))
+  (when (file-regular-p file)
+    (load file)))
 
-    ;; allow ido usage in as many contexts as possible. see
-    ;; customizations/navigation.el line 23 for a description
-    ;; of ido
-    ido-ubiquitous
+(require 'setup-defaults)
+(require 'setup-dired)
+(require 'setup-helm)
+(require 'setup-projectile)
+(require 'setup-clojure)
+(require 'setup-company)
+(require 'setup-markdown)
+(require 'setup-mc)
+(require 'setup-hydra)
+(require 'setup-svn)
+(require 'setup-js2)
+(require 'setup-org)
 
-    ;; Enhances M-x to allow easier execution of commands. Provides
-    ;; a filterable list of possible commands in the minibuffer
-    ;; http://www.emacswiki.org/emacs/Smex
-    smex
-
-    ;; project navigation
-    projectile
-
-    ;; colorful parenthesis matching
-    rainbow-delimiters
-
-    ;; edit html tags like sexps
-    tagedit
-
-    ;; git integration
-    magit
-
-    hydra
-
-    auto-complete
-    ))
-
-;; On OS X, an Emacs instance started from the graphical user
-;; interface will have a different environment than a shell in a
-;; terminal window, because OS X does not run a shell during the
-;; login. Obviously this will lead to unexpected results when
-;; calling external utilities like make from Emacs.
-;; This library works around this problem by copying important
-;; environment variables from the user's shell.
-;; https://github.com/purcell/exec-path-from-shell
-(if (eq system-type 'darwin)
-    (add-to-list 'my-packages 'exec-path-from-shell))
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
-
-
-;; Place downloaded elisp files in ~/.emacs.d/vendor. You'll then be able
-;; to load them.
-;;
-;; For example, if you download yaml-mode.el to ~/.emacs.d/vendor,
-;; then you can add the following code to this file:
-;;
-;; (require 'yaml-mode)
-;; (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-;; 
-;; Adding this code will make Emacs enter yaml mode whenever you open
-;; a .yml file
-(add-to-list 'load-path "~/.emacs.d/vendor")
-
-
-;;;;
-;; Customization
-;;;;
-
-;; Add a directory to our load path so that when you `load` things
-;; below, Emacs knows where to look for the corresponding file.
-(add-to-list 'load-path "~/.emacs.d/customizations")
-
-;; Sets up exec-path-from-shell so that Emacs will use the correct
-;; environment variables
-(load "shell-integration.el")
-
-;; These customizations make it easier for you to navigate files,
-;; switch buffers, and choose options from the minibuffer.
-(load "navigation.el")
-
-;; These customizations change the way emacs looks and disable/enable
-;; some user interface elements
-(load "ui.el")
-
-;; These customizations make editing a bit nicer.
-(load "editing.el")
-
-;; Hard-to-categorize customizations
-(load "misc.el")
-
-;; For editing lisps
-(load "elisp-editing.el")
-
-;; Langauage-specific
-(load "setup-clojure.el")
-(load "setup-js.el")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2)
- '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "c739f435660ca9d9e77312cbb878d5d7fd31e386a7758c982fa54a49ffd47f6e" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-(require 'server)
-(defun server-ensure-safe-dir (dir) "Noop" t)
-(unless (server-running-p)
-  (server-start))
-
-(desktop-save-mode 1)
-
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)

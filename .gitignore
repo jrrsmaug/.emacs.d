@@ -11,3 +11,5 @@ backups
 .emacs.desktop
 README.md
 elpa
+*.lock$
+

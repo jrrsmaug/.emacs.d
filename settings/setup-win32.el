@@ -1,0 +1,11 @@
+(set-face-attribute 'default nil :font "Consolas-11")
+(set-clipboard-coding-system 'utf-16le-dos)
+(set-file-name-coding-system 'iso-8859-1)
+(toggle-frame-maximized)
+(setq exec-path (append '("C:\\Program Files (x86)\\Git\\bin") exec-path))
+(setenv "PATH" (concat "C:\\Program Files (x86)\\Git\\bin;" (getenv "PATH")))
+(setq markdown-command "markdown.pl")
+(eval-after-load 'projectile '(setq projectile-indexing-method 'alien))
+(setq tramp-default-method "plink")
+
+(provide 'setup-win32)
