@@ -1,0 +1,7 @@
+(:name hydra-head
+       :description "make Emacs bindings that stick around"
+       :type github
+       :pkgname "abo-abo/hydra"
+       :prepare (autoload 'hydra "hydra"
+		  "make Emacs bindings that stick around" t)
+       :depends (cl-lib))

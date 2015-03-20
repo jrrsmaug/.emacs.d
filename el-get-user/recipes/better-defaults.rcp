@@ -1,0 +1,4 @@
+(:name better-defaults
+       :description "A small number of better defaults for Emacs"
+       :type github
+       :pkgname "technomancy/better-defaults")
