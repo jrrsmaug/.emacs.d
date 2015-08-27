@@ -1,4 +1,4 @@
-(setq exec-path (append exec-path '("C:\\Program Files (x86)\\Git\\bin")))
+(setq exec-path (append exec-path '("C:\\msys32\\usr\\bin")))
 
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -28,14 +28,12 @@
         expand-region
         popup
         dsvn
-        magit
         js2-mode
         yasnippet
         smartparens
         exec-path-from-shell
         projectile
         undo-tree
-        moz-repl
         ace-jump-mode
         dired+
         bookmark+
