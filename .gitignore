@@ -12,6 +12,9 @@ backups
 README.md
 elpa
 *.lock$
-recentf
+recentf?
 el-get
 server
+init.el~
+.emacs.desktop.lock
+recentf
