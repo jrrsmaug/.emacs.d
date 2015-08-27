@@ -12,4 +12,5 @@ backups
 README.md
 elpa
 *.lock$
-
+recentf
+el-get
