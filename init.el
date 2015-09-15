@@ -18,32 +18,32 @@
 
 (setq my:el-get-packages
       '(clojure-mode
-        solarized-emacs
-        rainbow-delimiters
-        cider
-        midje-mode
-        helm
-        markdown-mode
-        multiple-cursors
-        expand-region
-        popup
-        dsvn
-        js2-mode
-        yasnippet
-        smartparens
-        exec-path-from-shell
-        projectile
-        undo-tree
-        ace-jump-mode
-        dired+
-        bookmark+
-        iy-go-to-char
-        key-chord
-        keep-buffers
-        ace-window
-        hydra-head
-        framemove
-        company
+	solarized-emacs
+	rainbow-delimiters
+	cider
+	midje-mode
+	helm
+	markdown-mode
+	multiple-cursors
+	expand-region
+	popup
+	dsvn
+	js2-mode
+	yasnippet
+	smartparens
+	exec-path-from-shell
+	projectile
+	undo-tree
+	ace-jump-mode
+	dired+
+	bookmark+
+	iy-go-to-char
+	key-chord
+	keep-buffers
+	ace-window
+	hydra-head
+	framemove
+	company
 	))
 
 (el-get 'sync my:el-get-packages)
