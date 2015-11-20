@@ -15,4 +15,6 @@ elpa
 server
 .mc-lists.el
 el-get
-
+init.el~
+.emacs.desktop.lock
+recentf?

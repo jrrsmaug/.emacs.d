@@ -1,4 +1,4 @@
-(setq exec-path (append exec-path '("C:\\Program Files (x86)\\Git\\bin")))
+(setq exec-path (append exec-path '("C:\\msys32\\usr\\bin")))
 
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -18,34 +18,32 @@
 
 (setq my:el-get-packages
       '(clojure-mode
-        solarized-emacs
-        rainbow-delimiters
-        cider
-        midje-mode
-        helm
-        markdown-mode
-        multiple-cursors
-        expand-region
-        popup
-        dsvn
-        magit
-        js2-mode
-        yasnippet
-        smartparens
-        exec-path-from-shell
-        projectile
-        undo-tree
-        moz-repl
-        ace-jump-mode
-        dired+
-        bookmark+
-        iy-go-to-char
-        key-chord
-        keep-buffers
-        ace-window
-        hydra-head
-        framemove
-        company
+	solarized-emacs
+	rainbow-delimiters
+	cider
+	midje-mode
+	helm
+	markdown-mode
+	multiple-cursors
+	expand-region
+	popup
+	dsvn
+	js2-mode
+	yasnippet
+	smartparens
+	exec-path-from-shell
+	projectile
+	undo-tree
+	ace-jump-mode
+	dired+
+	bookmark+
+	iy-go-to-char
+	key-chord
+	keep-buffers
+	ace-window
+	hydra-head
+	framemove
+	company
 	))
 
 (el-get 'sync my:el-get-packages)

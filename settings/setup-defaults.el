@@ -20,7 +20,6 @@
 
 (global-linum-mode 1)
 (require 'server)
-(defun server-ensure-safe-dir (dir) "Noop" t)
 (unless (server-running-p)
   (server-start))
 (desktop-save-mode 1)
