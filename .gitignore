@@ -1,15 +1,18 @@
 .smex-items
-*~$
+*~
 places
-.recentf
+recentf
 ido.last
 cider-history
 projectile-bookmarks.eld
 projectile.cache
 auto-save-list
 backups
-.emacs.desktop
+.emacs.desktop*
 README.md
 elpa
 *.lock$
+server
+.mc-lists.el
+el-get
 
