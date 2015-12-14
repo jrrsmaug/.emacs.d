@@ -44,6 +44,7 @@
 	hydra-head
 	framemove
 	company
+	org-reveal
 	))
 
 (el-get 'sync my:el-get-packages)
@@ -77,3 +78,6 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
+
+(require 'ox-confluence)
+
