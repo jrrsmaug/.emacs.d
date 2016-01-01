@@ -1,4 +1,4 @@
-(setq exec-path (append exec-path '("C:\\msys32\\usr\\bin")))
+(setq exec-path (append exec-path '("C:\\msys64\\usr\\bin")))
 
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
