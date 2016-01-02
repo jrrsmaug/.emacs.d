@@ -15,6 +15,11 @@
  '(markdown-command "markdown.pl" t)
  '(org-replace-disputed-keys nil)
  '(recentf-mode t)
+ '(safe-local-variable-values
+   (quote
+    ((bug-reference-bug-regexp . "#\\(?2:[[:digit:]]+\\)")
+     (org-descriptive-links)
+     (org-src-preserve-indentation . t))))
  '(shift-select-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

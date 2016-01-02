@@ -29,4 +29,6 @@
 
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
+(set-face-attribute 'default nil :font "Menlo for Powerline-10")
+
 (provide 'setup-defaults)

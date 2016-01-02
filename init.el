@@ -1,4 +1,4 @@
-(setq exec-path (append exec-path '("C:\\msys32\\usr\\bin")))
+(setq exec-path (append exec-path '("C:\\msys64\\usr\\bin")))
 
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -35,16 +35,17 @@
 	projectile
 	undo-tree
 	ace-jump-mode
-	dired+
+;	dired+
 	bookmark+
-	iy-go-to-char
-	key-chord
-	keep-buffers
+;	iy-go-to-char
+;	key-chord
+;	keep-buffers
 	ace-window
-	hydra-head
-	framemove
+;	hydra-head
+;	framemove
 	company
 	org-reveal
+;	misc-cmds
 	))
 
 (el-get 'sync my:el-get-packages)
@@ -64,14 +65,14 @@
     (load file)))
 
 (require 'setup-defaults)
-(require 'setup-dired)
+;(require 'setup-dired)
 (require 'setup-helm)
 (require 'setup-projectile)
 (require 'setup-clojure)
 (require 'setup-company)
 (require 'setup-markdown)
-(require 'setup-mc)
-(require 'setup-hydra)
+;(require 'setup-mc)
+;(require 'setup-hydra)
 (require 'setup-svn)
 (require 'setup-js2)
 (require 'setup-org)
