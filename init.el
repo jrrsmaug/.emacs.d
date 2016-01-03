@@ -33,6 +33,7 @@
 	smartparens
 	exec-path-from-shell
 	projectile
+	helm-projectile
 	undo-tree
 	ace-jump-mode
 ;	dired+
